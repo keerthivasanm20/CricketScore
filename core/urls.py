@@ -5,7 +5,7 @@ urlpatterns = [
 	
 	path('matches/', getMatches.as_view()),
 	path('getscore/',Score_of_match.as_view()),
-	path('redirect/',jst_callback),
+	path('redirect/',jst_callback.as_view()),
 	path('results/',homeview.as_view()),
 	path('searchresults/',get_Searched_Matches.as_view()),
 	path('searchredirect/',jst_searchback),

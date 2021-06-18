@@ -57,9 +57,9 @@ class getMatches(APIView):
        
       
       
-
-def jst_callback(request,format=None):
-
+class jst_callback(APIView):
+      def post(self,request,format=None):
+       
             unique_id=request.POST.get('unique')
             print(unique_id)
             return redirect('/score/'+unique_id)
@@ -92,19 +92,22 @@ class homeview(APIView):
       
     def get(self,request):
         
-        if not self.request.session.exists(request.session.session_key):
-           self.request.session.create()
+        if "list_value" not in request.session:
+           if not self.request.session.exists(request.session.session_key):
+              self.request.session.create()
            
            endpoint='matches/'
            headers={'Content-Type': 'application/json', 'apikey':apiKey }
            response = get(BASE_URL + endpoint, {},headers=headers)
-           today=date.today()
+           
            l=[]
            if response !=None:
              response= response.json()
              today=datetime.today()
+             print(today)
              for i in range(0,len(response['matches'])):
                  date_unformat=response['matches'][i]['date']
+                 print(date_unformat)
                  match_day=date_unformat.replace("T00:00:00.000Z", "")
                  date_dt3 = datetime.strptime(match_day, '%Y-%m-%d')
                  if(((today.date() - timedelta(days=1)) == date_dt3.date() or today.date() == date_dt3.date()) and (response['matches'][i]['matchStarted']) ):

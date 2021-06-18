@@ -44,7 +44,7 @@ export default class Livematches extends Component {
             <Router> 
             <ul>
             {this.state.d.matches.map((item, i) => {
-                      return  <li key={i}><form action='/cric/redirect/' method="POST"> <CSRFToken/><a><button className="but" type="submit"><h3>{item['team-1']} vs {item['team-2']} on {item['date']}</h3></button></a><input type="hidden" value={item['unique_id']} name="unique"/></form></li>
+                      return  <li key={i}><form action='/cric/redirect/' method="POST"><CSRFToken/> <a><button className="but" type="submit"><h3>{item['team-1']} vs {item['team-2']} on {item['date']}</h3></button></a><input type="hidden" value={item['unique_id']} name="unique"/></form></li>
                     })}
             </ul>
             

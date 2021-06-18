@@ -125,6 +125,10 @@ USE_TZ = True
 AUTO_LOGOUT_DELAY = 5 #equivalent to 5 minutes
 STATIC_ROOT = os.path.join(BASE_DIR,'./frontend/static')
 STATIC_URL = '/static/'
+AUTHENTICATION_BACKENDS = ['api.auth.AlwaysRootBackend']
+REST_FRAMEWORK ={ 'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny' ]}
+DATA_UPLOAD_MAX_NUMBER_FIELDS = None
+CORS_ORIGIN_ALLOW_ALL = True
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'./frontend/static'),
 ]
