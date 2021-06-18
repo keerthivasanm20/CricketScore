@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 from .middleware import AutoLogout
 from pathlib import Path
+import django_heroku
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -122,10 +123,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 AUTO_LOGOUT_DELAY = 5 #equivalent to 5 minutes
+STATIC_ROOT = os.path.join(BASE_DIR,'./frontend/static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'./frontend/static'),
 ]
 SESSION_EXPIRE_AT_BROWSER_CLOSE  = True
-AUTO_LOGOUT_DELAY=3
+django_heroku.settings(locals())
 # Database
